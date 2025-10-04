@@ -1,0 +1,17 @@
+# Node
+node_modules/
+npm-debug.log
+.env
+.env.local
+.DS_Store
+
+# Next.js
+.next/
+out/
+
+# Logs
+logs
+*.log
+
+# Misc
+*.swp
