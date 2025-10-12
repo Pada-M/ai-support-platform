@@ -74,4 +74,20 @@ router.post("/login", async (req, res) => {
   }
 });
 
+import { verifyToken } from "../middleware/verifyToken.js"; // we'll make this next
+
+// 🧭 Protected route: get current business profile
+router.get("/profile", verifyToken, async (req, res) => {
+  try {
+    const business = await Business.findById(req.businessId).select("-password");
+    if (!business) {
+      return res.status(404).json({ message: "Business not found" });
+    }
+    res.json({ user: business });
+  } catch (err) {
+    console.error("Profile error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 export default router;
